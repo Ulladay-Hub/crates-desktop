@@ -34,9 +34,10 @@ pub struct User {
 }
 
 #[derive(Deserialize, Debug)]
-struct CrateResponse {
-    crate: CrateInfo,
-    versions: Vec<VersionInfo>,
+pub struct CrateResponse {
+    #[serde(rename = "crate")]
+    pub crate_info: CrateInfo,
+    pub versions: Vec<VersionInfo>,
 }
 
 pub async fn fetch_crate_info(crate_name: &str) -> Result<CrateResponse, Error> {
